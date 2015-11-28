@@ -1,0 +1,41 @@
+[package]
+
+name        = "nix"
+description = "Rust friendly bindings to *nix APIs"
+version     = "0.4.1"
+authors     = ["Carl Lerche <me@carllerche.com>"]
+homepage    = "https://github.com/carllerche/nix-rust"
+license     = "MIT"
+exclude     = [
+  ".gitignore",
+  ".travis.yml",
+  "deploy.sh",
+  "test/**/*"
+]
+
+[features]
+eventfd = []
+execvpe = []
+preadv_pwritev = []
+signalfd = []
+
+[dependencies]
+libc = { git = "https://github.com/brayniac/libc.git" }
+bitflags = "0.3.2"
+
+[dev-dependencies]
+rand = "0.3.8"
+
+[dev-dependencies.nix-test]
+path    = "nix-test"
+version = "*"
+
+[[test]]
+name = "test"
+path = "test/test.rs"
+
+[[test]]
+name = "test-signalfd"
+path = "test/test_signalfd.rs"
+harness = false
+test = true
